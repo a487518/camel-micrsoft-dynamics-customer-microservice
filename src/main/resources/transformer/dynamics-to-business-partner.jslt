@@ -1,0 +1,120 @@
+{
+  "businessPartner": [
+    {
+      "businessPartnerGeographicalLocation": {
+        "geographicalLocation": {
+          "city": .value[0].hsem_cityid.hsem_externalid,
+          "latitude": .value[0].address1_latitude,
+          "longitude": .value[0].address1_longitude,
+          "regionKey": .value[0].hsem_provinceid.hsem_externalid,
+          "street": .value[0].address1_line1
+        }
+      },
+      "businessPartnerTax": {
+        "taxNumber": .value[0].hsem_vatnumber
+      },
+      "communication": [
+        if (.value[0].emailaddress1 != null) {
+          "communicationAddress": .value[0].emailaddress1,
+          "communicationType": "email"
+        },
+        {
+          "communicationNumber": if (.value[0].telephone1 != null) .value[0].telephone1 else "",
+          "communicationType": "phone1"
+        },
+        {
+          "communicationNumber": if (.value[0].telephone2 != null) .value[0].telephone2 else "",
+          "communicationType": "phone2"
+        }
+      ],
+      "customer": {
+        "businessOrganizationalSegment": .value[0].hsem_businessorganizationsegmentid.hsem_name,
+        "businessSegment": .value[0].hsem_businesssegmentid.hsem_name,
+        "customerChannel": .value[0].hsem_channelid.hsem_name,
+        "customerSalesOrganization": [
+          {
+            "customerBilling": {
+              "paymentTermsKey": .value[0].paymenttermscode
+            },
+            "customerCommercialHierarchy": {
+              "salesTerritory": if (.value[0].territoryid != null) .value[0].territoryid.name else ""
+            },
+            "customerSales": {
+              "customerSubChannel": .value[0].hsem_subchannelid.hsem_externalid,
+              "outletClassification": .value[0].accountclassificationcode,
+              "salesGroup": .value[0].hec_distributioncenter.hsem_externalid,
+              "salesOffice": if (.value[0].primarycontactid != null) .value[0].primarycontactid.fullname else ""
+            }
+          }
+        ]
+      },
+      "globalBusinessPartnerID": .value[0].hsem_externalid,
+      "localFields": [
+        {
+          "fieldName": "distributioncentername",
+          "fieldValue": .value[0].hec_distributioncenter.hsem_name
+        },
+        {
+          "fieldName": "createdOn",
+          "fieldValue": .value[0].createdon
+        },
+        {
+          "fieldName": "creditlimit",
+          "fieldValue": if (.value[0].creditlimit != null) .value[0].creditlimit else ""
+        },
+        {
+          "fieldName": "modifiedByUser",
+          "fieldValue": .value[0].modifiedby.fullname
+        },
+        {
+          "fieldName": "modifiedOn",
+          "fieldValue": .value[0].modifiedon
+        },
+        {
+          "fieldName": "preferredAppointmentDayCode",
+          "fieldValue": if (.value[0].preferredappointmentdaycode != null) .value[0].preferredappointmentdaycode else ""
+        },
+        {
+          "fieldName": "preferredVisitDay1",
+          "fieldValue": if (.value[0].hsem_preferredvisitday != null) .value[0].hsem_preferredvisitday else ""
+        },
+        {
+          "fieldName": "preferredVisitDay2",
+          "fieldValue": if (.value[0].hsem_2ndpreferredvisitday != null) .value[0].hsem_2ndpreferredvisitday else ""
+        },
+        {
+          "fieldName": "preferredVisitDay3",
+          "fieldValue": if (.value[0].hsem_3rdpreferredvisitday != null) .value[0].hsem_3rdpreferredvisitday else ""
+        },
+        {
+          "fieldName": "preferredVisitDay4",
+          "fieldValue": if (.value[0].hsem_4thpreferredvisitday != null) .value[0].hsem_4thpreferredvisitday else ""
+        },
+        {
+          "fieldName": "preferredWeekNumber",
+          "fieldValue": if (.value[0].hsem_preferredweeknumber != null) .value[0].hsem_preferredweeknumber else ""
+        },
+        {
+          "fieldName": "visitFrequency",
+          "fieldValue": if (.value[0].hsem_visitfrequency != null) .value[0].hsem_visitfrequency else ""
+        },
+        {
+          "fieldName": "regionidname",
+          "fieldValue": .value[0].hsem_regionid.hsem_name
+        },
+        {
+          "fieldName": "subchannelidname",
+          "fieldValue": .value[0].hsem_subchannelid.hsem_name
+        },
+        {
+          "fieldName": "interfaceTriggerDate",
+          "fieldValue": if (.value[0].hec_interfacetrigger != null) .value[0].hec_interfacetrigger else ""
+        }
+      ],
+      "name1": .value[0].name,
+      "name2": .value[0].hsem_name_2,
+      "operationalBusinessPartnerID": .value[0].hsem_semid_auto,
+      "status": .value[0].statecode
+    }
+  ]
+}
