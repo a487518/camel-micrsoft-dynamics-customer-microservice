@@ -12,7 +12,6 @@ public class SemCustomerListener extends RouteBuilder {
 
         from("jms:queue:{{solace.queue.name}}")
                 .routeId("SOLACE_MESSAGE_SPLIT_AND_SEND")
-                // .log(LoggingLevel.INFO, "Received message from Solace: ${body}")
                 .setVariable("semId", simple("${jsonpath('$.PrimaryEntityId')}"))
                 .log(LoggingLevel.INFO, "Value of semId: ${variable.semId}")
                 .to("direct:getAccount");   
